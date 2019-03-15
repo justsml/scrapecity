@@ -12,10 +12,10 @@ async function go() {
   );
 }
 
-function getFollowerCounts(username = 'wesbos') {
+function getFollowerCounts() {
   return Promise.all([
-    getHTML(`https://instagram.com/${username}`).then(getInstagramFollowers),
-    getHTML(`https://twitter.com/${username}`).then(getTwitterFollowers),
+    getHTML(`https://instagram.com/wesbos`).then(getInstagramFollowers),
+    getHTML(`https://twitter.com/wesbos`).then(getTwitterFollowers),
   ]);
 }
 
