@@ -6,11 +6,13 @@ import {
 } from './lib/scraper';
 
 async function go() {
-  const iPromise = getHTML('https://instagram.com/wesbos');
-  const tPromise = getHTML('https://twitter.com/wesbos');
-  const [instagramHTML, twitterHTML] = await Promise.all([iPromise, tPromise]);
-  const instagramCount = await getInstagramFollowers(instagramHTML);
-  const twCount = await getTwitterFollowers(twitterHTML);
+  const followerCounts = [
+    getHTML('https://instagram.com/wesbos').then(getInstagramFollowers),
+    getHTML('https://twitter.com/wesbos').then(getTwitterFollowers),
+  ];
+  
+  const [instagramCount, twCount] = await Promise.all(followerCounts);
+
   console.log(
     `You have ${twCount} twitter followers and ${instagramCount} instagram followers`
   );
