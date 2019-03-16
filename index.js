@@ -6,10 +6,10 @@ import {
 } from './lib/scraper';
 
 async function go() {
-  const [instagramCount, twCount] = await getFollowerCounts('justsml')  
-  console.log(
-    `You have ${twCount} twitter followers and ${instagramCount} instagram followers`
-  );
+  getFollowerCounts('justsml')
+    .then(([instagramCount, twCount]) => {
+      console.log(`You have ${twCount} twitter followers and ${instagramCount} instagram followers`);
+    });
 }
 
 function getFollowerCounts() {
